@@ -1,8 +1,11 @@
+@import 'abstracts/animations';
+
 @import 'base/base',
         'base/typography';
 
 @import 'components/image-container';
 
-@import 'layout/first-screen',
+@import 'layout/screens',
+        'layout/first-screen',
         'layout/second-screen',
         'layout/grid';

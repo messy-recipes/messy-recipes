@@ -6,4 +6,38 @@
     height: 450px;
     width: 450px;
   }
+
+  &__list {
+
+    position: relative;
+
+    &::before {
+      content: "";
+      display: block;
+      background: transparent;
+      position: absolute;
+      left: 100%;
+      right: 0;
+      bottom: 0;
+      top: 0;
+    }
+  }
+
+  &__popup {
+    background: black;
+    color: white;
+    width: 500px;
+    margin: 0 auto;
+    
+    transform: translateY(calc(-50% - 50vh));
+    animation: moveup .2s;
+    &.remove {
+      animation: removal 2s;
+    }
+  }
+}
+
+// Disables all buttons when the user clicks a recipe name
+#randomRecipes.active::before {
+  left: 0;
 }

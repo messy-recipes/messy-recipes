@@ -34,19 +34,18 @@ app.getRandomMeals = function () {
         const recipeObject = recipe[0].meals[0];
         const meal = {
           name: recipeObject.strMeal,
-          picture: recipeObject.strMealThumb
+          picture: recipeObject.strMealThumb,
+          origin: recipeObject.strArea
         };
         
         app.recipesArray.push(meal);
       });
 
       if (!app.checkDuplicateRecipes(app.recipesArray)) {
-        console.log('no duplicates');
         app.appendImage();
         app.randomRecipeList();
       } else {
         app.getRandomMeals();
-        console.log('duplicates');
       }
 
     })
@@ -94,18 +93,55 @@ app.randomRecipeList = () => {
 // Function: Recipe name check
 // Check if the button that was clicked was the winning recipe
 app.recipeNameCheck = function() {
+  // Grab the recipe name that was clicked and the winning recipe name
   const recipeClicked = $(this).data('name');
   const winningRecipe = app.recipesArray[0].name;
+  const origin = app.recipesArray[0].origin;
+
+  // Disable the other recipe name buttons
+  app.$randomList.addClass('active');
+
+  // Create popup elements for each scenario
+  const winningElement = `
+    <div class="second-screen__popup">
+      <h2>Correct!</h2>
+      <p>The recipe is ${winningRecipe}</p>
+      <button class="button second-screen__winner-button" id="winnerButton">Continue</button>
+    </div>
+  `;
+  
+  const wrongElement = `
+    <div class="second-screen__popup">
+      <h2>Incorrect!</h2>
+      <p>Hint: It is a ${origin} dish.</p>
+      <button class="button second-screen__loser-button" id="loserButton">Try again</button>
+    </div>
+  `;
 
   if (recipeClicked === winningRecipe) {
-    console.log('winner');
+    app.$secondScreen.after($(winningElement));
+
+    $('#winnerButton').on('click', function() {
+      $('.second-screen__popup').addClass('remove').delay(4000).remove();
+      app.$secondScreen.addClass('complete');
+    });
   } else {
-    console.log('loser');
+    
+    app.$secondScreen.after($(wrongElement));
+
+    $('#loserButton').on('click', function() {
+      app.$randomList.removeClass('active');
+      $('.second-screen__popup').addClass('remove').delay(4000).remove();
+    });
   }
 }
 
 // Function: Init
 app.init = function () {
+  // Caching selectors
+  app.$randomList = $('#randomRecipes');
+  app.$secondScreen = $('#secondScreen');
+
   app.getRandomMeals();
 }
 

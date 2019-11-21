@@ -1,3 +1,47 @@
+@-webkit-keyframes moveup {
+  0% {
+    -webkit-transform: translateY(calc(-50% - 100vh));
+            transform: translateY(calc(-50% - 100vh));
+  }
+  100% {
+    -webkit-transform: translateY(calc(-50% - 50vh));
+            transform: translateY(calc(-50% - 50vh));
+  }
+}
+
+@keyframes moveup {
+  0% {
+    -webkit-transform: translateY(calc(-50% - 100vh));
+            transform: translateY(calc(-50% - 100vh));
+  }
+  100% {
+    -webkit-transform: translateY(calc(-50% - 50vh));
+            transform: translateY(calc(-50% - 50vh));
+  }
+}
+
+@-webkit-keyframes removal {
+  0% {
+    -webkit-transform: translateY(calc(-50% - 50vh));
+            transform: translateY(calc(-50% - 50vh));
+  }
+  100% {
+    -webkit-transform: translateY(calc(-50% - 100vh));
+            transform: translateY(calc(-50% - 100vh));
+  }
+}
+
+@keyframes removal {
+  0% {
+    -webkit-transform: translateY(calc(-50% - 50vh));
+            transform: translateY(calc(-50% - 50vh));
+  }
+  100% {
+    -webkit-transform: translateY(calc(-50% - 100vh));
+            transform: translateY(calc(-50% - 100vh));
+  }
+}
+
 article, aside, details, figcaption, figure, footer, header, hgroup, nav, section, summary {
   display: block;
 }
@@ -183,6 +227,11 @@ body {
   font-size: 62.5%;
 }
 
+img {
+  width: 100%;
+  display: block;
+}
+
 body {
   font-family: "Arimo", sans-serif;
 }
@@ -214,6 +263,13 @@ p {
   bottom: 0;
 }
 
+.complete {
+  -webkit-transition: 1.2s all;
+  transition: 1.2s all;
+  -webkit-transform: translateY(calc(100vh + 100%));
+          transform: translateY(calc(100vh + 100%));
+}
+
 .second-screen {
   position: relative;
   height: 100vh;
@@ -222,6 +278,41 @@ p {
 .second-screen__image-container {
   height: 450px;
   width: 450px;
+}
+
+.second-screen__list {
+  position: relative;
+}
+
+.second-screen__list::before {
+  content: "";
+  display: block;
+  background: transparent;
+  position: absolute;
+  left: 100%;
+  right: 0;
+  bottom: 0;
+  top: 0;
+}
+
+.second-screen__popup {
+  background: black;
+  color: white;
+  width: 500px;
+  margin: 0 auto;
+  -webkit-transform: translateY(calc(-50% - 50vh));
+          transform: translateY(calc(-50% - 50vh));
+  -webkit-animation: moveup .2s;
+          animation: moveup .2s;
+}
+
+.second-screen__popup.remove {
+  -webkit-animation: removal 2s;
+          animation: removal 2s;
+}
+
+#randomRecipes.active::before {
+  left: 0;
 }
 
 .wrapper {

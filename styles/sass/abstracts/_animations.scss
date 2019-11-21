@@ -1,0 +1,9 @@
+@keyframes moveup {
+  0% { transform: translateY(calc(-50% - 100vh)) }
+  100% { transform: translateY(calc(-50% - 50vh)); }
+}
+
+@keyframes removal {
+  0% { transform: translateY(calc(-50% - 50vh)) }
+  100% { transform: translateY(calc(-50% - 100vh)); }
+}
