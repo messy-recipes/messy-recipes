@@ -1,58 +1,64 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Messy Recipes</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Messy Recipes</title>
 
-    <link rel="stylesheet" href="styles/style.css">
+	<link rel="stylesheet" href="styles/style.css">
 </head>
+
 <body>
-    <main class="wrapper">
-        <section class="first-screen">
-            <h1 class="first-screen__h1">Messy Recipes</h1>
-            <p class="first-screen__p">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Velit natus sunt optio magnam fugit, quam quidem aliquam iure inventore aperiam!</p>
-            <p class="first-screen__p">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Velit natus sunt optio magnam fugit, quam quidem aliquam iure inventore aperiam!</p>
-            <p class="first-screen__p">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Velit natus sunt optio magnam fugit, quam quidem aliquam iure inventore aperiam!</p>
-            <button id="startButton" class="button--start">Get Started!</button>
-        </section>
-        <!-- first page of the game -->
+	<main class="wrapper">
+		<section class="first-screen">
+			<h1 class="first-screen__h1">Messy Recipes</h1>
+			<p class="first-screen__p">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Velit natus sunt optio magnam
+				fugit, quam quidem aliquam iure inventore aperiam!</p>
+			<p class="first-screen__p">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Velit natus sunt optio magnam
+				fugit, quam quidem aliquam iure inventore aperiam!</p>
+			<p class="first-screen__p">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Velit natus sunt optio magnam
+				fugit, quam quidem aliquam iure inventore aperiam!</p>
+			<button id="startButton" class="button--start">Get Started!</button>
+		</section>
+		<!-- first page of the game -->
 
-        <section class="second-screen">
-            <div class="second-screen__left">
-                <div class="second-screen__image-container">
-                    <!-- image goes in here through js -->
-                </div>
-            </div>
-            <div class="second-screen__right">
-                <ul class="second-screen__list">
-                    <!-- the name of the 5 random recipe API will be here -->
-                </ul>
-            </div>
-        </section>
-        <!-- second page of the game -->
+		<section class="second-screen">
+			<div class="second-screen__left">
+				<div class="second-screen__image-container winningRecipeImage">
+					<!-- image goes in here through js -->
+				</div>
+			</div>
+			<div class="second-screen__right">
+				<ul class="second-screen__list" id="randomRecipes">
+					<!-- the name of the 5 random recipe API will be here -->
+				</ul>
+			</div>
+		</section>
+		<!-- second page of the game -->
 
-        <section class="end-screen">
-            <div class="end-screen__left">
-                <div class="end-screen__image-container">
-                    <!-- where we put the image for the end screen -->
-                </div>
-                <div class="end-screen__names">
-                    <p>Created by: <a>Russell Bentulan</a><br>& <a>Howard Chen</a></p>
-                </div>
-            </div>
-            <div class="end-screen__right">
-                <ul>
-                    <!-- recipe link / youtube link -->
-                </ul>
-                <button id="playAgain" class="button--play-again">Play Again!</button>
-            </div>
-        </section>
-    </main>
-    <!-- wrapper -->
+		<section class="end-screen">
+			<div class="end-screen__left">
+				<div class="end-screen__image-container winningRecipeImage">
+					<!-- where we put the image for the end screen -->
+				</div>
+				<div class="end-screen__names">
+					<p>Created by: <a>Russell Bentulan</a><br>& <a>Howard Chen</a></p>
+				</div>
+			</div>
+			<div class="end-screen__right">
+				<ul>
+					<!-- recipe link / youtube link -->
+				</ul>
+				<button id="playAgain" class="button--play-again">Play Again!</button>
+			</div>
+		</section>
+	</main>
+	<!-- wrapper -->
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> 
-    <script src="scripts/script.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script src="scripts/script.js"></script>
 </body>
+
 </html>

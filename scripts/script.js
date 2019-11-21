@@ -12,38 +12,47 @@ app.randomMealEndpoint = "random.php";
 // Retrieves 5 meals from TheMealDB API
 app.getRandomMeals = function () {
 
-    // Save 5 different API Promises
-    recipesArray = [];
-    for (let i = 0; i < 5; i++) {
-        const randomRecipe = $.ajax({
-            url: app.baseUrl + app.randomMealEndpoint,
-            method: 'GET',
-            dataType: 'json'
-        });
-        recipesArray.push(randomRecipe);
-    }
+  // Save 5 different API Promises
+  recipesArray = [];
+  for (let i = 0; i < 5; i++) {
+    const randomRecipe = $.ajax({
+      url: app.baseUrl + app.randomMealEndpoint,
+      method: 'GET',
+      dataType: 'json'
+    });
+    recipesArray.push(randomRecipe);
+  }
 
-    // When all 5 Promises are fulfilled, take out the information we need to use and save it to the global scope
-    $.when(...recipesArray)
-        .then( (...retreivedRecipes) => {
-            retreivedRecipes.forEach(recipe => {
-                const recipeObject = recipe[0].meals[0];
-                const meal = {
-                    name: recipeObject.strMeal,
-                    picture: recipeObject.strMealThumb
-                };
-                app.recipesArray.push(meal);
-            });
-        })
-        .catch( error => console.log(error) );
+  // When all 5 Promises are fulfilled, take out the information we need to use and save it to the global scope
+  $.when(...recipesArray)
+    .then((...retreivedRecipes) => {
+      retreivedRecipes.forEach(recipe => {
+        const recipeObject = recipe[0].meals[0];
+        const meal = {
+          name: recipeObject.strMeal,
+          picture: recipeObject.strMealThumb
+        };
+        app.recipesArray.push(meal);
+        // Take the names and put it into the DOM
+        $('#randomRecipes').append(`<li><button>${recipeObject.strMeal}</button></li>`);
+      });
+      app.appendImage();
+    })
+    .catch(error => console.log(error));
 }
 
+// Function: appendImage
+// Call the info for first picture and append onto the DOM
+app.appendImage = () => {
+  $('.winningRecipeImage').append(`<img src="${app.recipesArray[0].picture}">`);
+};
+
 // Function: Init
-app.init = function() {
-    app.getRandomMeals();
+app.init = function () {
+  app.getRandomMeals();
 }
 
 // Function: Document Ready
-$(function(){
-    app.init();
+$(function () {
+  app.init();
 });
