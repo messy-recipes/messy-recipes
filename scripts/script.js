@@ -33,10 +33,9 @@ app.getRandomMeals = function () {
           picture: recipeObject.strMealThumb
         };
         app.recipesArray.push(meal);
-        // Take the names and put it into the DOM
-        $('#randomRecipes').append(`<li><button>${recipeObject.strMeal}</button></li>`);
       });
       app.appendImage();
+      app.randomRecipeList();
     })
     .catch(error => console.log(error));
 }
@@ -47,22 +46,27 @@ app.appendImage = () => {
   $('.winningRecipeImage').append(`<img src="${app.recipesArray[0].picture}">`);
 };
 
-// Function: randomRecipeList
-// shuffled the array recipe list
-app.randomRecipeList = () => {
-  const originalArray = app.recipesArray;
-  const shuffledRecipeList = ([...originalArray]) => {
-    let arrayLength = originalArray.length;
-    while (arrayLength) {
-      const i = Math.floor(Math.random() * arrayLength--);
-      [originalArray[arrayLength], originalArray[i]] = [originalArray[i], originalArray[arrayLength]];
-    }
-    return originalArray;
+// Function: shuffle array
+// takes an array and shuffles it
+app.shuffleArray = ([...originalArray]) => {
+  let arrayLength = originalArray.length;
+  while (arrayLength) {
+    const i = Math.floor(Math.random() * arrayLength--);
+    [originalArray[arrayLength], originalArray[i]] = [originalArray[i], originalArray[arrayLength]];
   }
-  shuffledRecipeList(originalArray);
+  return originalArray;
 }
 
-app.randomRecipeList();
+// Function: randomRecipeList
+// shuffled the array recipe list and put it on DOM
+app.randomRecipeList = () => {
+  const originalArray = app.recipesArray;
+  const recipeNameElement = originalArray.map(recipe =>{
+    return `<li><button>${recipe.name}</button></li>`
+  });
+  const shuffledArray = app.shuffleArray(recipeNameElement);
+  $('#randomRecipes').html(shuffledArray);
+}
 
 // Function: Init
 app.init = function () {
