@@ -61,11 +61,34 @@ app.shuffleArray = ([...originalArray]) => {
 // shuffled the array recipe list and put it on DOM
 app.randomRecipeList = () => {
   const originalArray = app.recipesArray;
-  const recipeNameElement = originalArray.map(recipe =>{
-    return `<li><button>${recipe.name}</button></li>`
-  });
+  const recipeNameElement = originalArray.map(recipe => {
+    return `
+      <li>
+        <button data-name="${recipe.name}" class="recipe-button">
+          ${recipe.name}
+        </button>
+      </li>
+      `
+    });
+
   const shuffledArray = app.shuffleArray(recipeNameElement);
   $('#randomRecipes').html(shuffledArray);
+
+  // Listen for a click on one of the recipe names
+  $('.recipe-button').on('click', app.recipeNameCheck);
+}
+
+// Function: Recipe name check
+// Check if the button that was clicked was the winning recipe
+app.recipeNameCheck = function() {
+  const recipeClicked = $(this).data('name');
+  const winningRecipe = app.recipesArray[0].name;
+
+  if (recipeClicked === winningRecipe) {
+    console.log('winner');
+  } else {
+    console.log('loser');
+  }
 }
 
 // Function: Init
