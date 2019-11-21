@@ -1,5 +1,23 @@
 .wrapper {
   max-width: 1140px;
   width: 80%;
+  height: 100vh;
+  max-height: 100vh;
   margin: 0 auto;
+  overflow: hidden;
+}
+
+.flex {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  &--center {
+    @extend .flex;
+    justify-content: center;
+  }
+
+  &__column {
+    flex: 1 1 50%;
+  }
 }

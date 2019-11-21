@@ -12,19 +12,23 @@ app.randomMealEndpoint = "random.php";
 // Retrieves 5 meals from TheMealDB API
 app.getRandomMeals = function () {
 
+  // Function: Check Duplicate Recipes
+  // returns true if there are duplicates that exist
+  app.checkDuplicateRecipes = (recipesArray) => new Set(recipesArray).size !== recipesArray.length;
+
   // Save 5 different API Promises
-  recipesArray = [];
+  recipePromises = [];
   for (let i = 0; i < 5; i++) {
     const randomRecipe = $.ajax({
       url: app.baseUrl + app.randomMealEndpoint,
       method: 'GET',
       dataType: 'json'
     });
-    recipesArray.push(randomRecipe);
+    recipePromises.push(randomRecipe);
   }
 
   // When all 5 Promises are fulfilled, take out the information we need to use and save it to the global scope
-  $.when(...recipesArray)
+  $.when(...recipePromises)
     .then((...retreivedRecipes) => {
       retreivedRecipes.forEach(recipe => {
         const recipeObject = recipe[0].meals[0];
@@ -32,10 +36,19 @@ app.getRandomMeals = function () {
           name: recipeObject.strMeal,
           picture: recipeObject.strMealThumb
         };
+        
         app.recipesArray.push(meal);
       });
-      app.appendImage();
-      app.randomRecipeList();
+
+      if (!app.checkDuplicateRecipes(app.recipesArray)) {
+        console.log('no duplicates');
+        app.appendImage();
+        app.randomRecipeList();
+      } else {
+        app.getRandomMeals();
+        console.log('duplicates');
+      }
+
     })
     .catch(error => console.log(error));
 }
