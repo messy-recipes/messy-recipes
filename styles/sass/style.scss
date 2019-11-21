@@ -1,1 +1,5 @@
-@import 'base/base';
+@import 'base/base',
+        'base/typography';
+
+@import 'layout/first-screen',
+        'layout/grid'

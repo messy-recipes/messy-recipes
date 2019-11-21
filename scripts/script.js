@@ -47,6 +47,23 @@ app.appendImage = () => {
   $('.winningRecipeImage').append(`<img src="${app.recipesArray[0].picture}">`);
 };
 
+// Function: randomRecipeList
+// shuffled the array recipe list
+app.randomRecipeList = () => {
+  const originalArray = app.recipesArray;
+  const shuffledRecipeList = ([...originalArray]) => {
+    let arrayLength = originalArray.length;
+    while (arrayLength) {
+      const i = Math.floor(Math.random() * arrayLength--);
+      [originalArray[arrayLength], originalArray[i]] = [originalArray[i], originalArray[arrayLength]];
+    }
+    return originalArray;
+  }
+  shuffledRecipeList(originalArray);
+}
+
+app.randomRecipeList();
+
 // Function: Init
 app.init = function () {
   app.getRandomMeals();
