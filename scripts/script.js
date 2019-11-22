@@ -67,7 +67,7 @@ app.randomRecipeList = () => {
   const recipeNameElement = originalArray.map(recipe => {
     return `
       <li>
-        <button data-name="${recipe.strMeal}" class="recipe-button">
+        <button data-name="${recipe.strMeal}" class="recipe-button" disabled>
           ${recipe.strMeal}
         </button>
       </li>
@@ -97,7 +97,7 @@ app.recipeNameCheck = function() {
     <div class="second-screen__popup">
       <h2>Correct!</h2>
       <p>The recipe is ${winningRecipe}</p>
-      <button class="button second-screen__winner-button" id="winnerButton">Continue</button>
+      <button class="button second-screen__winner-button" id="winnerButton" disabled>Continue</button>
     </div>
   `;
   
@@ -105,12 +105,17 @@ app.recipeNameCheck = function() {
     <div class="second-screen__popup">
       <h2>Incorrect!</h2>
       <p>Hint: It is a ${origin} dish.</p>
-      <button class="button second-screen__loser-button" id="loserButton">Try again</button>
+      <button class="button second-screen__loser-button" id="loserButton" disabled>Try again</button>
     </div>
   `;
 
+  // Check the recipe name that was clicked against the winning recipe name
   if (recipeClicked === winningRecipe) {
+    // Show the winning popup element
     app.$secondScreen.after($(winningElement));
+
+    // Enable the [CONTINUE] button
+    $('#winnerButton').attr('disabled', false);
 
     $('#winnerButton').on('click', function() {
       $('.second-screen__popup').addClass('remove');
@@ -118,46 +123,74 @@ app.recipeNameCheck = function() {
       app.$secondScreen.addClass('screen-two-move-up');
       app.$endScreen.addClass('complete');
       app.$randomList.removeClass('active');
-      app.appendLinks();
+      app.addLinks();
+
+      // Disable the winner button, and enable the next screen's focusable elements
+      $(this).attr('disabled', true);
+      $('.endScreenLinks').attr('tabIndex', 1);
+      app.$playAgain.attr('disabled', false);
     });
   } else {
-    
+    // Show the wrong popup
     app.$secondScreen.after($(wrongElement));
 
-    $('#loserButton').on('click', function() {
+    // Enable the loser button to be clicked
+    $('#loserButton').attr('disabled', false);
+
+    $('#loserButton').on('click', function () {
       app.$randomList.removeClass('active');
       $('.second-screen__popup').slideUp(1000);
+
+      // Disable this button, and allow the recipe names to be clicked
+      $(this).attr('disabled', true);
+      $('.recipe-button').attr('disabled', false);
     });
   }
 }
 
-// Function appendLinks
+// Function addLinks
 // Added list items that are external links to youtube 
-app.appendLinks = () => {
+app.addLinks = () => {
   const youtube = app.currentRecipes[0].strYoutube;
   const source = app.currentRecipes[0].strSource;
-  $('#externalLinks').append(`<li><a href="${youtube}">YouTube Link</a></li>`);
-  $('#externalLinks').append(`<li><a href="${source}">Recipe Link</a></li>`);
+  const linkElements = `
+    <li><a href="${youtube}" class="endScreenLinks" tabIndex="-1">YouTube Link</a></li>
+    <li><a href="${source}" class="endScreenLinks" tabIndex="-1">Recipe Link</a></li>
+  `;
+  $('#externalLinks').html(linkElements);
 }
 
 // Function: Init
 app.init = function () {
   // Caching selectors
+  app.$startbutton = $('#startButton');
+  app.$playAgain = $('#playAgain');
   app.$randomList = $('#randomRecipes');
   app.$secondScreen = $('#secondScreen');
   app.$endScreen = $('#endScreen');
   app.getRandomMeals();
+
   // On click for start button
-  $('#startButton').on('click', function () {
+  app.$startbutton.on('click', function () {
     $('#firstScreen').addClass('complete');
     app.$secondScreen.addClass('complete');
+    
+    // Disable this button, allow the recipe name elements to be clicked
+    $(this).attr('disabled', true);
+    $('.recipe-button').attr('disabled', false);
   });
+
   // On click button for play again button  
-  $('#playAgain').on('click', function() {
+  app.$playAgain.on('click', function() {
+    // Disable this button and the anchor tags, enable the start button to be clicked
+    $(this).attr('disabled', true);
+    $('.endScreenLinks').attr('tabIndex', -1);
+    app.$startbutton.attr('disabled', false);
+
     app.getRandomMeals();
     $('#firstScreen').removeClass('complete');
     app.$secondScreen.removeClass('screen-two-move-up');
-    app.$endScreen.removeClass('complete')
+    app.$endScreen.removeClass('complete');
   })
 }
 
