@@ -310,6 +310,8 @@ button {
 }
 
 .second-screen__popup {
+  position: absolute;
+  top: 100vh;
   background: black;
   color: white;
   width: 500px;
@@ -323,6 +325,8 @@ button {
 .second-screen__popup.remove {
   -webkit-animation: removal 2s;
           animation: removal 2s;
+  -webkit-transform: translateY(0);
+          transform: translateY(0);
 }
 
 #randomRecipes.active::before {

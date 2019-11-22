@@ -23,15 +23,17 @@
   }
 
   &__popup {
+    position: absolute;
+    top: 100vh;
     background: black;
     color: white;
     width: 500px;
-    margin: 0 auto;
-    
+    margin: 0 auto;    
     transform: translateY(calc(-50% - 50vh));
     animation: moveup .2s;
     &.remove {
       animation: removal 2s;
+      transform: translateY(0);
     }
   }
 }

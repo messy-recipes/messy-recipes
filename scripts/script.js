@@ -122,7 +122,7 @@ app.recipeNameCheck = function() {
     app.$secondScreen.after($(winningElement));
 
     $('#winnerButton').on('click', function() {
-      $('.second-screen__popup').slideUp(1000);
+      $('.second-screen__popup').addClass('remove');
       app.$secondScreen.addClass('complete');
       
     });
