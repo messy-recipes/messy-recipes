@@ -284,6 +284,13 @@ button {
   height: 100vh;
 }
 
+.screen-two-move-up {
+  -webkit-transition: 1.2s all;
+  transition: 1.2s all;
+  -webkit-transform: translateY(-200vh);
+          transform: translateY(-200vh);
+}
+
 .second-screen {
   position: absolute;
   top: 100vh;

@@ -35,9 +35,12 @@ app.getRandomMeals = function () {
         const meal = {
           name: recipeObject.strMeal,
           picture: recipeObject.strMealThumb,
-          origin: recipeObject.strArea
+          origin: recipeObject.strArea,
+          // ...added youTube
+          youtube: recipeObject.strYoutube,
+          // ... added recipe link
+          source: recipeObject.strSource
         };
-        
         app.recipesArray.push(meal);
       });
 
@@ -47,7 +50,6 @@ app.getRandomMeals = function () {
       } else {
         app.getRandomMeals();
       }
-
     })
     .catch(error => console.log(error));
 }
@@ -123,8 +125,12 @@ app.recipeNameCheck = function() {
 
     $('#winnerButton').on('click', function() {
       $('.second-screen__popup').addClass('remove');
-      app.$secondScreen.addClass('complete');
-      
+      // ... should move the second screen to -200vh instead
+      app.$secondScreen.addClass('screen-two-move-up');
+      // ... did end screen
+      app.$endScreen.addClass('complete')
+      // ... added append source
+      app.appendLinks();
     });
   } else {
     
@@ -137,13 +143,25 @@ app.recipeNameCheck = function() {
   }
 }
 
+// ... added the external links
+// ... function appendLinks
+// ... added list items that are external links to youtube 
+app.appendLinks = () => {
+  const youtube = app.recipesArray[0].youtube;
+  const source = app.recipesArray[0].source;
+  $('#externalLinks').append(`<li><a href="${youtube}">YouTube Link</a></li>`);
+  $('#externalLinks').append(`<li><a href="${source}">Recipe Link</a></li>`);
+}
+
 // Function: Init
 app.init = function () {
   // Caching selectors
   app.$randomList = $('#randomRecipes');
   app.$secondScreen = $('#secondScreen');
+  // ... added end screen
+  app.$endScreen = $('#endScreen');
   app.getRandomMeals();
-  // 
+  // on click for start button
   $('#startButton').on('click', function () {
     $('#firstScreen').addClass('complete');
     app.$secondScreen.addClass('complete');
