@@ -2,62 +2,51 @@
 const app = {};
 
 // All of the recipes retrieved from the API
-app.recipesArray = [];
+app.allRecipes = [];
+
+app.currentRecipes = [];
 
 // API details
 app.baseUrl = "https://www.themealdb.com/api/json/v1/1/";
 app.randomMealEndpoint = "random.php";
 
 // Function: Get Random Meals
-// Retrieves 5 meals from TheMealDB API
-app.getRandomMeals = function () {
-
-  // Function: Check Duplicate Recipes
-  // returns true if there are duplicates that exist
-  app.checkDuplicateRecipes = (recipesArray) => new Set(recipesArray).size !== recipesArray.length;
-
-  // Save 5 different API Promises
-  recipePromises = [];
-  for (let i = 0; i < 5; i++) {
-    const randomRecipe = $.ajax({
-      url: app.baseUrl + app.randomMealEndpoint,
+// Retrieves 10 random meals from TheMealDB API and stores them in the global reipes array
+app.getRandomMeals = function() {
+  // Check that there are less than 5 meals available to show to the user
+  if(app.allRecipes.length < 5) {
+    const radomRecipes = $.ajax({
+      url: `${appConfig.baseUrl}/${appConfig.apiKey}/${appConfig.randomMeals}`,
       method: 'GET',
       dataType: 'json'
-    });
-    recipePromises.push(randomRecipe);
+    }).then(response => {
+      // Take the array response and add it to the global recipes array
+      app.allRecipes.push(...response.meals);
+      app.showRandomMeals();
+    }).catch(error => console.log(error));
+  } else {
+    app.showRandomMeals();
+  }
+}
+
+// Function: Show Random Meals
+// Takes 5 meals from the recipes array
+app.showRandomMeals = function() {
+  // Take 5 meals out of the global array
+  app.currentRecipes = [];
+  while (app.currentRecipes.length < 5) {
+    const meal = app.allRecipes.shift();
+    app.currentRecipes.push(meal);
   }
 
-  // When all 5 Promises are fulfilled, take out the information we need to use and save it to the global scope
-  $.when(...recipePromises)
-    .then((...retreivedRecipes) => {
-      retreivedRecipes.forEach(recipe => {
-        const recipeObject = recipe[0].meals[0];
-        const meal = {
-          name: recipeObject.strMeal,
-          picture: recipeObject.strMealThumb,
-          origin: recipeObject.strArea,
-          // ...added youTube
-          youtube: recipeObject.strYoutube,
-          // ... added recipe link
-          source: recipeObject.strSource
-        };
-        app.recipesArray.push(meal);
-      });
-
-      if (!app.checkDuplicateRecipes(app.recipesArray)) {
-        app.appendImage();
-        app.randomRecipeList();
-      } else {
-        app.getRandomMeals();
-      }
-    })
-    .catch(error => console.log(error));
+  app.appendImage();
+  app.randomRecipeList();
 }
 
 // Function: appendImage
 // Call the info for first picture and append onto the DOM
 app.appendImage = () => {
-  $('.winningRecipeImage').append(`<img src="${app.recipesArray[0].picture}">`);
+  $('.winningRecipeImage').append(`<img src="${app.currentRecipes[0].strMealThumb}">`);
 };
 
 // Function: shuffle array
@@ -74,12 +63,12 @@ app.shuffleArray = ([...originalArray]) => {
 // Function: randomRecipeList
 // shuffled the array recipe list and put it on DOM
 app.randomRecipeList = () => {
-  const originalArray = app.recipesArray;
+  const originalArray = app.currentRecipes;
   const recipeNameElement = originalArray.map(recipe => {
     return `
       <li>
-        <button data-name="${recipe.name}" class="recipe-button">
-          ${recipe.name}
+        <button data-name="${recipe.strMeal}" class="recipe-button">
+          ${recipe.strMeal}
         </button>
       </li>
       `
@@ -97,8 +86,8 @@ app.randomRecipeList = () => {
 app.recipeNameCheck = function() {
   // Grab the recipe name that was clicked and the winning recipe name
   const recipeClicked = $(this).data('name');
-  const winningRecipe = app.recipesArray[0].name;
-  const origin = app.recipesArray[0].origin;
+  const winningRecipe = app.currentRecipes[0].strMeal;
+  const origin = app.currentRecipes[0].strArea;
 
   // Disable the other recipe name buttons
   app.$randomList.addClass('active');
@@ -147,8 +136,8 @@ app.recipeNameCheck = function() {
 // ... function appendLinks
 // ... added list items that are external links to youtube 
 app.appendLinks = () => {
-  const youtube = app.recipesArray[0].youtube;
-  const source = app.recipesArray[0].source;
+  const youtube = app.currentRecipes[0].strYoutube;
+  const source = app.currentRecipes[0].strSource;
   $('#externalLinks').append(`<li><a href="${youtube}">YouTube Link</a></li>`);
   $('#externalLinks').append(`<li><a href="${source}">Recipe Link</a></li>`);
 }
@@ -166,6 +155,12 @@ app.init = function () {
     $('#firstScreen').addClass('complete');
     app.$secondScreen.addClass('complete');
   });
+
+  $('#playAgain').on('click', function() {
+    app.getRandomMeals();
+    console.log(app.allRecipes);
+    console.log(app.currentRecipes);
+  })
 }
 
 // Function: Document Ready
