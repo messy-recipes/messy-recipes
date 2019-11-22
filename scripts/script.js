@@ -122,8 +122,9 @@ app.recipeNameCheck = function() {
     app.$secondScreen.after($(winningElement));
 
     $('#winnerButton').on('click', function() {
-      $('.second-screen__popup').addClass('remove').delay(4000).remove();
+      $('.second-screen__popup').slideUp(1000);
       app.$secondScreen.addClass('complete');
+      
     });
   } else {
     
@@ -131,7 +132,7 @@ app.recipeNameCheck = function() {
 
     $('#loserButton').on('click', function() {
       app.$randomList.removeClass('active');
-      $('.second-screen__popup').addClass('remove').delay(4000).remove();
+      $('.second-screen__popup').slideUp(1000);
     });
   }
 }
@@ -141,8 +142,12 @@ app.init = function () {
   // Caching selectors
   app.$randomList = $('#randomRecipes');
   app.$secondScreen = $('#secondScreen');
-
   app.getRandomMeals();
+  // 
+  $('#startButton').on('click', function () {
+    $('#firstScreen').addClass('complete');
+    app.$secondScreen.addClass('complete');
+  });
 }
 
 // Function: Document Ready

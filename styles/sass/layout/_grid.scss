@@ -1,9 +1,13 @@
 .wrapper {
   max-width: 1140px;
   width: 80%;
+  margin: 0 auto;
+  height: 100vh;
+}
+
+body {
   height: 100vh;
   max-height: 100vh;
-  margin: 0 auto;
   overflow: hidden;
 }
 

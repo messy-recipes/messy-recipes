@@ -1,7 +1,7 @@
 @-webkit-keyframes moveup {
   0% {
-    -webkit-transform: translateY(calc(-50% - 100vh));
-            transform: translateY(calc(-50% - 100vh));
+    -webkit-transform: translateY(0);
+            transform: translateY(0);
   }
   100% {
     -webkit-transform: translateY(calc(-50% - 50vh));
@@ -11,8 +11,8 @@
 
 @keyframes moveup {
   0% {
-    -webkit-transform: translateY(calc(-50% - 100vh));
-            transform: translateY(calc(-50% - 100vh));
+    -webkit-transform: translateY(0);
+            transform: translateY(0);
   }
   100% {
     -webkit-transform: translateY(calc(-50% - 50vh));
@@ -26,8 +26,8 @@
             transform: translateY(calc(-50% - 50vh));
   }
   100% {
-    -webkit-transform: translateY(calc(-50% - 100vh));
-            transform: translateY(calc(-50% - 100vh));
+    -webkit-transform: translateY(0);
+            transform: translateY(0);
   }
 }
 
@@ -37,8 +37,8 @@
             transform: translateY(calc(-50% - 50vh));
   }
   100% {
-    -webkit-transform: translateY(calc(-50% - 100vh));
-            transform: translateY(calc(-50% - 100vh));
+    -webkit-transform: translateY(0);
+            transform: translateY(0);
   }
 }
 
@@ -263,16 +263,30 @@ p {
   bottom: 0;
 }
 
+button {
+  font-size: 2.4rem;
+  padding: 0.5% 2%;
+}
+
+.recipe-button {
+  font-size: 1.6rem;
+}
+
 .complete {
   -webkit-transition: 1.2s all;
   transition: 1.2s all;
-  -webkit-transform: translateY(calc(100vh + 100%));
-          transform: translateY(calc(100vh + 100%));
+  -webkit-transform: translateY(-100vh);
+          transform: translateY(-100vh);
+}
+
+.screens {
+  position: relative;
+  height: 100vh;
 }
 
 .second-screen {
-  position: relative;
-  height: 100vh;
+  position: absolute;
+  top: 100vh;
 }
 
 .second-screen__image-container {
@@ -318,9 +332,13 @@ p {
 .wrapper {
   max-width: 1140px;
   width: 80%;
+  margin: 0 auto;
+  height: 100vh;
+}
+
+body {
   height: 100vh;
   max-height: 100vh;
-  margin: 0 auto;
   overflow: hidden;
 }
 
