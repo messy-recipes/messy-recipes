@@ -19,7 +19,7 @@ app.getRandomMeals = function() {
       url: `${appConfig.baseUrl}/${appConfig.apiKey}/${appConfig.randomMeals}`,
       method: 'GET',
       dataType: 'json'
-    }).then(response => {
+    }).then(response => { 
       // Take the array response and add it to the global recipes array
       app.allRecipes.push(...response.meals);
       app.showRandomMeals();
@@ -50,7 +50,7 @@ app.appendImage = () => {
 };
 
 // Function: shuffle array
-// takes an array and shuffles it
+// Takes an array and shuffles it
 app.shuffleArray = ([...originalArray]) => {
   let arrayLength = originalArray.length;
   while (arrayLength) {
@@ -114,11 +114,10 @@ app.recipeNameCheck = function() {
 
     $('#winnerButton').on('click', function() {
       $('.second-screen__popup').addClass('remove');
-      // ... should move the second screen to -200vh instead
+      app.$secondScreen.removeClass('complete');
       app.$secondScreen.addClass('screen-two-move-up');
-      // ... did end screen
-      app.$endScreen.addClass('complete')
-      // ... added append source
+      app.$endScreen.addClass('complete');
+      app.$randomList.removeClass('active');
       app.appendLinks();
     });
   } else {
@@ -132,9 +131,8 @@ app.recipeNameCheck = function() {
   }
 }
 
-// ... added the external links
-// ... function appendLinks
-// ... added list items that are external links to youtube 
+// Function appendLinks
+// Added list items that are external links to youtube 
 app.appendLinks = () => {
   const youtube = app.currentRecipes[0].strYoutube;
   const source = app.currentRecipes[0].strSource;
@@ -147,19 +145,19 @@ app.init = function () {
   // Caching selectors
   app.$randomList = $('#randomRecipes');
   app.$secondScreen = $('#secondScreen');
-  // ... added end screen
   app.$endScreen = $('#endScreen');
   app.getRandomMeals();
-  // on click for start button
+  // On click for start button
   $('#startButton').on('click', function () {
     $('#firstScreen').addClass('complete');
     app.$secondScreen.addClass('complete');
   });
-
+  // On click button for play again button  
   $('#playAgain').on('click', function() {
     app.getRandomMeals();
-    console.log(app.allRecipes);
-    console.log(app.currentRecipes);
+    $('#firstScreen').removeClass('complete');
+    app.$secondScreen.removeClass('screen-two-move-up');
+    app.$endScreen.removeClass('complete')
   })
 }
 
