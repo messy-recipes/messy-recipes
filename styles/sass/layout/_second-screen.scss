@@ -40,10 +40,10 @@
     padding: 3%;
     border-radius: 10px;
     box-shadow: 0 0 25px 5px black;
+
     &.remove {
-      animation: removal 2s;
-      // ... made some changes
-      transform: translateY(20vh);
+      animation: removal .4s ease-in-out;
+      transform: translate(calc(-100% - 50vh), calc(-50% - 50vh));
     }
   }
 }

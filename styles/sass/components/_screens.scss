@@ -8,6 +8,16 @@
   position: relative;
   height: 80vh;
   margin: 10vh auto;
+
+  &--card {
+    background-color: #FFF;
+    box-shadow: 2px 4px 6px rgba(0,0,0,.05),
+                2px 4px 4px rgba(0,0,0,.1),
+                0px 0px 2px rgba(0,0,0,.2);
+    padding: 2rem;
+
+    overflow: hidden;
+  }
 }
 
 // ..added screen two to move up from clicking winning recipe
