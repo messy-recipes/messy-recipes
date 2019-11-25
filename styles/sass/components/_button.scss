@@ -5,57 +5,67 @@ button {
 .recipe-button {
   font-size: 1.6rem;
 }
-.button--start, .button--play-again {
-  color: white;
-  background: linear-gradient(45deg,#9E52A2 0%, #823F80 50%, #5D2C58 100%);
-  border-style: none;
-  border-radius: 4px;
-  position: relative;
-  overflow: hidden;
-  &:hover {
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
-    transition: 0.5s;
-    box-shadow: 4px 4px 6px rgba(#5D2C58, .3),
-                6px 6px 8px rgba(#5D2C58, .1),
-                8px 8px 10px rgba(#5D2C58, .05)
+.button{
+  &--start,
+  &--play-again,
+  &--winner,
+  &--loser,
+  &--recipe {
+    border-style: none;
+    border-radius: 4px;
+    position: relative;
+    overflow: hidden;
+    &:hover, &:focus {
+      transition: 0.5s;
+    }
+    &::before{
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.5), transparent);
+      transition: 0.5s;
+    }
+    &:hover::before, &:focus::before {
+      left: 100%;
+    }
   }
-  &::before{
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.5), transparent);
-    transition: 0.5s;
+  
+  &--start, 
+  &--play-again {
+    background: linear-gradient(45deg,#9E52A2 0%, #823F80 50%, #5D2C58 100%);
+    &:hover, &:focus {
+      box-shadow: 4px 4px 6px rgba(#5D2C58, .3),
+                  6px 6px 8px rgba(#5D2C58, .1),
+                  8px 8px 10px rgba(#5D2C58, .05)
+    }
   }
-  &:hover::before {
-    left: 100%;
-  }
-}
 
-.recipe-button {
-  color: white;
-  background: #007B53;
-  border-style: none;
-  border-radius: 4px;
-  position: relative;
-  overflow: hidden;
-  &:hover {
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
-    transition: 0.5s;
+  &--winner,
+  &--loser {
+    background: #F4DDFC;
+    color: #823F80;
+    &:hover, &:focus {
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    }
   }
-  &::before{
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.5), transparent);
-    transition: 0.5s;
+
+  &--recipe {
+    background: #007B53;
   }
-  &:hover::before {
-    left: 100%;
+
+  &--start, 
+  &--play-again,
+  &--recipe {
+    color: white;
+    &:hover, &:focus {
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+    }
+  }
+  &--play-again {
+    display: inline-block;
+    max-width: 33vh;
   }
 }

@@ -5,6 +5,7 @@
   }
   
   &__list {
+    margin-left: 4%;
     background-color: #FFF;
     list-style: none;
     position: relative;
@@ -42,12 +43,18 @@
     );
     padding: 3%;
     border-radius: 10px;
-    box-shadow: 0 0 25px 5px black;
+    box-shadow: 0 0 25px 5px rgb(143, 110, 110);
 
     &.remove {
       animation: removal .4s ease-in-out;
       transform: translate(calc(-100% - 50vh), calc(-50% - 50vh));
     }
+  }
+}
+
+.second-screen {
+  .winning-image {
+    border: 8px solid #02A294;
   }
 }
 

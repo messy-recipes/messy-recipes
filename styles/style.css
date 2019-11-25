@@ -271,25 +271,26 @@ p {
 
 a {
   text-decoration: none;
-  color: #381A33;
   font-size: 2rem;
+  color: #823F80;
+  font-weight: bold;
 }
 
-a:hover {
-  text-shadow: 1px 1px 1px #823F80, 5px 3px 0px #F4DDFC, 8px 7px 0px #DEA6EE;
+.button--recipe {
+  font-size: 1.8rem;
 }
 
-.recipe-external-link {
+.recipe-external-link, a {
   position: relative;
   overflow: hidden;
   display: inline-block;
 }
 
-.recipe-external-link:hover {
+.recipe-external-link:hover .recipe-external-link:focus, a:hover .recipe-external-link:focus, .recipe-external-link:hover a:focus, a:hover a:focus {
   text-shadow: none;
 }
 
-.recipe-external-link::before {
+.recipe-external-link::before, a::before {
   content: '';
   position: absolute;
   background: linear-gradient(45deg, #DEA6EE, #DEA6EE);
@@ -302,8 +303,25 @@ a:hover {
   z-index: -1;
 }
 
-.recipe-external-link:hover::before {
+.recipe-external-link:hover::before, .recipe-external-link:focus::before, a:hover::before, a:focus::before {
   left: 0;
+}
+
+.end-screen p {
+  margin: 0;
+}
+
+.end-screen ul {
+  list-style: none;
+  padding: 0;
+}
+
+.end-screen__names p {
+  display: inline-block;
+}
+
+.end-screen__names a {
+  display: inline-block;
 }
 
 .image-container {
@@ -330,82 +348,81 @@ button {
   font-size: 1.6rem;
 }
 
-.button--start, .button--play-again {
-  color: white;
-  background: linear-gradient(45deg, #9E52A2 0%, #823F80 50%, #5D2C58 100%);
+.button--start, .button--play-again, .button--winner, .button--loser, .button--recipe {
   border-style: none;
   border-radius: 4px;
   position: relative;
   overflow: hidden;
 }
 
-.button--start:hover, .button--play-again:hover {
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+.button--start:hover, .button--start:focus, .button--play-again:hover, .button--play-again:focus, .button--winner:hover, .button--winner:focus, .button--loser:hover, .button--loser:focus, .button--recipe:hover, .button--recipe:focus {
   -webkit-transition: 0.5s;
   transition: 0.5s;
+}
+
+.button--start::before, .button--play-again::before, .button--winner::before, .button--loser::before, .button--recipe::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: -webkit-gradient(linear, left top, right top, from(transparent), color-stop(rgba(255, 255, 255, 0.5)), to(transparent));
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.5), transparent);
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+}
+
+.button--start:hover::before, .button--start:focus::before, .button--play-again:hover::before, .button--play-again:focus::before, .button--winner:hover::before, .button--winner:focus::before, .button--loser:hover::before, .button--loser:focus::before, .button--recipe:hover::before, .button--recipe:focus::before {
+  left: 100%;
+}
+
+.button--start, .button--play-again {
+  background: linear-gradient(45deg, #9E52A2 0%, #823F80 50%, #5D2C58 100%);
+}
+
+.button--start:hover, .button--start:focus, .button--play-again:hover, .button--play-again:focus {
   -webkit-box-shadow: 4px 4px 6px rgba(93, 44, 88, 0.3), 6px 6px 8px rgba(93, 44, 88, 0.1), 8px 8px 10px rgba(93, 44, 88, 0.05);
           box-shadow: 4px 4px 6px rgba(93, 44, 88, 0.3), 6px 6px 8px rgba(93, 44, 88, 0.1), 8px 8px 10px rgba(93, 44, 88, 0.05);
 }
 
-.button--start::before, .button--play-again::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: -webkit-gradient(linear, left top, right top, from(transparent), color-stop(rgba(255, 255, 255, 0.5)), to(transparent));
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.5), transparent);
-  -webkit-transition: 0.5s;
-  transition: 0.5s;
+.button--winner, .button--loser {
+  background: #F4DDFC;
+  color: #823F80;
 }
 
-.button--start:hover::before, .button--play-again:hover::before {
-  left: 100%;
+.button--winner:hover, .button--winner:focus, .button--loser:hover, .button--loser:focus {
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
 }
 
-.recipe-button {
-  color: white;
+.button--recipe {
   background: #007B53;
-  border-style: none;
-  border-radius: 4px;
-  position: relative;
-  overflow: hidden;
 }
 
-.recipe-button:hover {
+.button--start, .button--play-again, .button--recipe {
+  color: white;
+}
+
+.button--start:hover, .button--start:focus, .button--play-again:hover, .button--play-again:focus, .button--recipe:hover, .button--recipe:focus {
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
-  -webkit-transition: 0.5s;
-  transition: 0.5s;
 }
 
-.recipe-button::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: -webkit-gradient(linear, left top, right top, from(transparent), color-stop(rgba(255, 255, 255, 0.5)), to(transparent));
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.5), transparent);
-  -webkit-transition: 0.5s;
-  transition: 0.5s;
-}
-
-.recipe-button:hover::before {
-  left: 100%;
+.button--play-again {
+  display: inline-block;
+  max-width: 33vh;
 }
 
 .screens {
   position: fixed;
-  top: 0;
+  top: 50%;
   left: 50%;
-  height: 80vh;
   margin: 10vh 0;
+  height: 80vh;
+  max-height: 35rem;
   max-width: 114rem;
   width: 90%;
-  -webkit-transform: translate(-50%, 0);
-          transform: translate(-50%, 0);
+  -webkit-transform: translate(-50%, calc(-50% - 10vh));
+          transform: translate(-50%, calc(-50% - 10vh));
   -webkit-transition: 0.4s all cubic-bezier(0.165, 0.84, 0.44, 1);
   transition: 0.4s all cubic-bezier(0.165, 0.84, 0.44, 1);
   -webkit-transition-delay: .8s;
@@ -418,8 +435,8 @@ button {
 }
 
 .screens.complete {
-  -webkit-transform: translate(-50%, -100vh);
-          transform: translate(-50%, -100vh);
+  -webkit-transform: translate(-50%, calc(-100vh - 50%));
+          transform: translate(-50%, calc(-100vh - 50%));
 }
 
 .screens--card {
@@ -487,6 +504,7 @@ button {
 }
 
 .second-screen__list {
+  margin-left: 4%;
   background-color: #FFF;
   list-style: none;
   position: relative;
@@ -527,8 +545,8 @@ button {
   background-image: radial-gradient(circle at top right, #DEA6EE, #5D2C58);
   padding: 3%;
   border-radius: 10px;
-  -webkit-box-shadow: 0 0 25px 5px black;
-          box-shadow: 0 0 25px 5px black;
+  -webkit-box-shadow: 0 0 25px 5px #8f6e6e;
+          box-shadow: 0 0 25px 5px #8f6e6e;
 }
 
 .second-screen__popup.remove {
@@ -536,6 +554,10 @@ button {
           animation: removal .4s ease-in-out;
   -webkit-transform: translate(calc(-100% - 50vh), calc(-50% - 50vh));
           transform: translate(calc(-100% - 50vh), calc(-50% - 50vh));
+}
+
+.second-screen .winning-image {
+  border: 8px solid #02A294;
 }
 
 #randomRecipes.active::before {
@@ -577,4 +599,19 @@ body {
   -webkit-box-flex: 1;
       -ms-flex: 1 1 50%;
           flex: 1 1 50%;
+  min-height: 50vh;
+}
+
+.flex__column--right {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  margin: 0 5%;
 }

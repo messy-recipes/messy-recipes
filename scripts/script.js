@@ -45,7 +45,7 @@ app.showRandomMeals = function() {
 // Function: appendImage
 // Call the info for first picture and append onto the DOM
 app.appendImage = () => {
-  $('.winningRecipeImage').append(`<img src="${app.currentRecipes[0].strMealThumb}">`);
+  $('.winningRecipeImage').append(`<img src="${app.currentRecipes[0].strMealThumb}" class="winning-image">`);
 };
 
 // Function: shuffle array
@@ -66,7 +66,7 @@ app.randomRecipeList = () => {
   const recipeNameElement = originalArray.map(recipe => {
     return `
       <li>
-        <button data-name="${recipe.strMeal}" class="recipe-button" disabled>
+        <button data-name="${recipe.strMeal}" class="button--recipe" disabled>
           ${recipe.strMeal}
         </button>
       </li>
@@ -77,7 +77,7 @@ app.randomRecipeList = () => {
   $('#randomRecipes').html(shuffledArray);
 
   // Listen for a click on one of the recipe names
-  $('.recipe-button').on('click', app.recipeNameCheck);
+  $('.button--recipe').on('click', app.recipeNameCheck);
 }
 
 // Function: Recipe name check
@@ -96,7 +96,7 @@ app.recipeNameCheck = function() {
     <div class="second-screen__popup">
       <h2>Correct!</h2>
       <p>The recipe is ${winningRecipe}</p>
-      <button class="button second-screen__winner-button" id="winnerButton" disabled>Continue</button>
+      <button class="button button--winner" id="winnerButton" disabled>Continue</button>
     </div>
   `;
   
@@ -104,7 +104,7 @@ app.recipeNameCheck = function() {
     <div class="second-screen__popup">
       <h2>Incorrect!</h2>
       <p>Hint: It is a ${origin} dish.</p>
-      <button class="button second-screen__loser-button" id="loserButton" disabled>Try again</button>
+      <button class="button button--loser" id="loserButton" disabled>Try again</button>
     </div>
   `;
 
@@ -142,7 +142,7 @@ app.recipeNameCheck = function() {
 
       // Disable this button, and allow the recipe names to be clicked
       $(this).attr('disabled', true);
-      $('.recipe-button').attr('disabled', false);
+      $('.button--recipe').attr('disabled', false);
     });
   }
 }
@@ -180,7 +180,7 @@ app.init = function () {
     
     // Disable this button, allow the recipe name elements to be clicked
     $(this).attr('disabled', true);
-    $('.recipe-button').attr('disabled', false);
+    $('.button--recipe').attr('disabled', false);
   });
 
   // On click button for play again button  

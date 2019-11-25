@@ -24,21 +24,25 @@ p {
     text-shadow: 0px 0px 4px black;
   }
 }
-// ... added anchor styling
+// Anchor styling
 a {
   text-decoration: none;
-  color: #381A33;
   font-size: 2rem;
-  &:hover{
-    text-shadow: 1px 1px 1px #823F80, 5px 3px 0px #F4DDFC, 8px 7px 0px #DEA6EE
-  }
+  color: #823F80;
+  font-weight: bold; 
 }
+
+// Recipe button Styling
+.button--recipe {
+  font-size: 1.8rem;
+}
+
 // for youtube and recipe link external
-.recipe-external-link {
+.recipe-external-link, a {
   position: relative;
   overflow: hidden;
-  display: inline-block; 
-  &:hover {
+  display:inline-block;
+  &:hover &:focus {
     text-shadow: none;
   }
   &::before {
@@ -52,7 +56,25 @@ a {
     transition: 0.5s;
     z-index: -1;
   }
-  &:hover::before{
+  &:hover::before, &:focus::before {
     left: 0;
+  }
+}
+
+.end-screen {
+  p {
+    margin: 0;
+  }
+  ul {
+    list-style: none;
+    padding: 0; 
+  }
+  &__names{
+    p {
+      display: inline-block;
+    }
+    a {
+      display: inline-block;
+    }
   }
 }

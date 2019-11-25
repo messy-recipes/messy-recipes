@@ -3,7 +3,6 @@
   top: 50%;
   left: 50%;
   margin: 10vh 0;
-  
   height: 80vh;
   max-height: 35rem;
   max-width: 114rem;
@@ -31,10 +30,3 @@
     overflow: hidden;
   }
 }
-
-// ..added screen two to move up from clicking winning recipe
-// .screen-two-move-up {
-//   animation-delay: 5s;
-//   transition: .6s all cubic-bezier(0.165, 0.84, 0.44, 1);
-//   transform: translateY(-200vh);
-// }
