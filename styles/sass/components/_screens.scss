@@ -1,13 +1,14 @@
 .screens {
   position: fixed;
-  top: 0;
+  top: 50%;
   left: 50%;
-  height: 80vh;
   margin: 10vh 0;
   
+  height: 80vh;
+  max-height: 35rem;
   max-width: 114rem;
   width: 90%;
-  transform: translate(-50%, 0);
+  transform: translate(-50%, calc(-50% - 10vh));
   
   transition: .4s all cubic-bezier(0.165, 0.84, 0.44, 1);
   transition-delay: .8s;
@@ -17,7 +18,7 @@
   }
 
   &.complete {
-    transform: translate(-50%, -100vh);
+    transform: translate(-50%, calc(-100vh - 50%));
   }
 
   &--card {
