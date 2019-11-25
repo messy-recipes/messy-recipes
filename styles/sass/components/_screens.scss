@@ -1,13 +1,24 @@
-.complete {
+.screens {
+  position: fixed;
+  top: 0;
+  left: 50%;
+  height: 80vh;
+  margin: 10vh 0;
+  
+  max-width: 114rem;
+  width: 90%;
+  transform: translate(-50%, 0);
+  
   transition: .6s all cubic-bezier(0.165, 0.84, 0.44, 1);
   transition-delay: .8s;
-  transform: translateY(-100vh);
-}
 
-.screens {
-  position: relative;
-  height: 80vh;
-  margin: 10vh auto;
+  &.inactive {
+    transform: translate(-50%, 100vh);
+  }
+
+  &.complete {
+    transform: translate(-50%, -100vh);
+  }
 
   &--card {
     background-color: #FFF;
@@ -21,8 +32,8 @@
 }
 
 // ..added screen two to move up from clicking winning recipe
-.screen-two-move-up {
-  animation-delay: 5s;
-  transition: .6s all cubic-bezier(0.165, 0.84, 0.44, 1);
-  transform: translateY(-200vh);
-}
+// .screen-two-move-up {
+//   animation-delay: 5s;
+//   transition: .6s all cubic-bezier(0.165, 0.84, 0.44, 1);
+//   transform: translateY(-200vh);
+// }

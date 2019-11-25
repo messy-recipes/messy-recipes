@@ -39,7 +39,6 @@ app.showRandomMeals = function() {
     app.currentRecipes.push(meal);
   }
 
-  app.appendImage();
   app.randomRecipeList();
 }
 
@@ -119,11 +118,11 @@ app.recipeNameCheck = function() {
 
     $('#winnerButton').on('click', function() {
       $('.second-screen__popup').addClass('remove');
-      app.$secondScreen.removeClass('complete');
-      app.$secondScreen.addClass('screen-two-move-up');
-      app.$endScreen.addClass('complete');
+      app.$secondScreen.addClass('inactive');
+      app.$endScreen.removeClass('inactive');
       app.$randomList.removeClass('active');
       app.addLinks();
+      // app.$secondScreen.addClass('screen-two-move-up');
 
       // Disable the winner button, and enable the next screen's focusable elements
       $(this).attr('disabled', true);
@@ -172,8 +171,12 @@ app.init = function () {
 
   // On click for start button
   app.$startbutton.on('click', function () {
+    // Add the current winning image to the DOM
+    app.appendImage();
+
     $('#firstScreen').addClass('complete');
-    app.$secondScreen.addClass('complete');
+    app.$secondScreen.removeClass('inactive');
+    
     
     // Disable this button, allow the recipe name elements to be clicked
     $(this).attr('disabled', true);
@@ -189,8 +192,8 @@ app.init = function () {
 
     app.getRandomMeals();
     $('#firstScreen').removeClass('complete');
-    app.$secondScreen.removeClass('screen-two-move-up');
-    app.$endScreen.removeClass('complete');
+    app.$endScreen.addClass('inactive');
+    // app.$secondScreen.removeClass('screen-two-move-up');
   })
 }
 
