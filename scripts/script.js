@@ -148,14 +148,14 @@ app.recipeNameCheck = function() {
   }
 }
 
-// Function addLinks
+// Function Add Links
 // Added list items that are external links to youtube 
 app.addLinks = () => {
   const youtube = app.currentRecipes[0].strYoutube;
   const source = app.currentRecipes[0].strSource;
   const linkElements = `
-    <li><a href="${youtube}" class="endScreenLinks" tabIndex="-1">YouTube Link</a></li>
-    <li><a href="${source}" class="endScreenLinks" tabIndex="-1">Recipe Link</a></li>
+    <li><a href="${youtube}" class="endScreenLinks recipe-external-link" tabIndex="-1">YouTube Link</a></li>
+    <li><a href="${source}" class="endScreenLinks recipe-external-link" tabIndex="-1">Recipe Link</a></li>
   `;
   $('#externalLinks').html(linkElements);
 }

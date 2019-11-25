@@ -225,6 +225,19 @@ legend, button::-moz-focus-inner, input::-moz-focus-inner {
 
 body {
   font-size: 62.5%;
+  background: url(../images/restaurant.png);
+}
+
+body::before {
+  content: "";
+  display: block;
+  height: 100vh;
+  width: 33%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  background: -webkit-gradient(linear, left top, right bottom, from(#BDFCF6), to(#3BE2D2));
+  background: linear-gradient(to right bottom, #BDFCF6, #3BE2D2);
 }
 
 img {
@@ -241,11 +254,13 @@ h1, button, h2 {
 }
 
 h1 {
-  font-size: 4.6rem;
+  font-size: 4.2rem;
+  margin: 0;
 }
 
 p {
-  font-size: 2.4rem;
+  font-size: 1.8rem;
+  margin: .8em 0;
 }
 
 .image-container {
@@ -272,23 +287,128 @@ button {
   font-size: 1.6rem;
 }
 
+.button--start, .button--play-again, .recipe-button {
+  color: white;
+  background: linear-gradient(-30deg, #E9C1F6 0%, #C479D2 50%, #823F80 100%);
+  border-style: none;
+  border-radius: 4px;
+  position: relative;
+  -webkit-transform: perspective(500px);
+          transform: perspective(500px);
+  overflow: hidden;
+}
+
+.button--start:hover, .button--play-again:hover, .recipe-button:hover {
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+}
+
+.button--start::before, .button--play-again::before, .recipe-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: -webkit-gradient(linear, left top, right top, from(transparent), color-stop(rgba(255, 255, 255, 0.5)), to(transparent));
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.5), transparent);
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+}
+
+.button--start:hover::before, .button--play-again:hover::before, .recipe-button:hover::before {
+  left: 100%;
+}
+
+.recipe-button {
+  margin: 5% 0;
+}
+
+.recipe-button:hover {
+  text-shadow: 4px 4px 2px rgba(0, 0, 0, 0.8);
+  -webkit-box-shadow: 8px 8px 8px #5D2C58;
+          box-shadow: 8px 8px 8px #5D2C58;
+}
+
 .complete {
-  -webkit-transition: 1.2s all;
-  transition: 1.2s all;
+  -webkit-transition: 0.6s all cubic-bezier(0.165, 0.84, 0.44, 1);
+  transition: 0.6s all cubic-bezier(0.165, 0.84, 0.44, 1);
+  -webkit-transition-delay: .8s;
+          transition-delay: .8s;
   -webkit-transform: translateY(-100vh);
           transform: translateY(-100vh);
 }
 
 .screens {
   position: relative;
-  height: 100vh;
+  height: 80vh;
+  margin: 10vh auto;
 }
 
 .screen-two-move-up {
-  -webkit-transition: 1.2s all;
-  transition: 1.2s all;
+  -webkit-animation-delay: 5s;
+          animation-delay: 5s;
+  -webkit-transition: 0.6s all cubic-bezier(0.165, 0.84, 0.44, 1);
+  transition: 0.6s all cubic-bezier(0.165, 0.84, 0.44, 1);
   -webkit-transform: translateY(-200vh);
           transform: translateY(-200vh);
+}
+
+.first-screen {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  background-color: #FFF;
+  -webkit-box-shadow: 2px 4px 6px rgba(0, 0, 0, 0.05), 2px 4px 4px rgba(0, 0, 0, 0.1), 0px 0px 2px rgba(0, 0, 0, 0.2);
+          box-shadow: 2px 4px 6px rgba(0, 0, 0, 0.05), 2px 4px 4px rgba(0, 0, 0, 0.1), 0px 0px 2px rgba(0, 0, 0, 0.2);
+  padding: 2rem;
+  overflow: hidden;
+}
+
+.first-screen__p {
+  margin: 0;
+  position: relative;
+  top: 0;
+}
+
+.first-screen > * {
+  -webkit-transform: translateY(0);
+          transform: translateY(0);
+  -webkit-transition: .4s transform ease-out;
+  transition: .4s transform ease-out;
+}
+
+.first-screen > *::after {
+  content: "";
+  display: block;
+  position: absolute;
+  background-color: #FFF;
+  top: 0;
+  left: 0;
+  height: 0;
+  width: 100%;
+  -webkit-transition: .4s height ease-out;
+  transition: .4s height ease-out;
+}
+
+.first-screen.complete > * {
+  -webkit-transform: translateY(-50px);
+          transform: translateY(-50px);
+}
+
+.first-screen.complete > *::after {
+  height: 100%;
 }
 
 .second-screen {
@@ -302,6 +422,8 @@ button {
 }
 
 .second-screen__list {
+  background-color: #FFF;
+  list-style: none;
   position: relative;
 }
 
@@ -319,21 +441,24 @@ button {
 .second-screen__popup {
   position: absolute;
   top: 100vh;
-  background: black;
   color: white;
   width: 500px;
-  margin: 0 auto;
   -webkit-transform: translateY(calc(-50% - 50vh));
           transform: translateY(calc(-50% - 50vh));
   -webkit-animation: moveup .2s;
           animation: moveup .2s;
+  background-image: radial-gradient(circle at top right, #DEA6EE, #5D2C58);
+  padding: 3%;
+  border-radius: 10px;
+  -webkit-box-shadow: 0 0 25px 5px black;
+          box-shadow: 0 0 25px 5px black;
 }
 
 .second-screen__popup.remove {
   -webkit-animation: removal 2s;
           animation: removal 2s;
-  -webkit-transform: translateY(0);
-          transform: translateY(0);
+  -webkit-transform: translateY(20vh);
+          transform: translateY(20vh);
 }
 
 #randomRecipes.active::before {
