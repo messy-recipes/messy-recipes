@@ -16,7 +16,7 @@ button {
   &:hover {
     text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
     transition: 0.5s;
-    // box-shadow: 12px 12px 8px #5D2C58;
+    box-shadow: 12px 12px 8px #5D2C58;
   }
   &::before{
     content: '';

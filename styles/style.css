@@ -238,6 +238,8 @@ body::before {
   top: 0;
   background: -webkit-gradient(linear, left top, right bottom, from(#BDFCF6), to(#3BE2D2));
   background: linear-gradient(to right bottom, #BDFCF6, #3BE2D2);
+  -webkit-box-shadow: 1px 0 5px rgba(0, 0, 0, 0.15), 0 0 3px rgba(0, 0, 0, 0.2);
+          box-shadow: 1px 0 5px rgba(0, 0, 0, 0.15), 0 0 3px rgba(0, 0, 0, 0.2);
 }
 
 img {
@@ -343,6 +345,8 @@ button {
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
   -webkit-transition: 0.5s;
   transition: 0.5s;
+  -webkit-box-shadow: 12px 12px 8px #5D2C58;
+          box-shadow: 12px 12px 8px #5D2C58;
 }
 
 .button--start::before, .button--play-again::before, .recipe-button::before {
@@ -382,8 +386,8 @@ button {
   width: 90%;
   -webkit-transform: translate(-50%, 0);
           transform: translate(-50%, 0);
-  -webkit-transition: 0.6s all cubic-bezier(0.165, 0.84, 0.44, 1);
-  transition: 0.6s all cubic-bezier(0.165, 0.84, 0.44, 1);
+  -webkit-transition: 0.4s all cubic-bezier(0.165, 0.84, 0.44, 1);
+  transition: 0.4s all cubic-bezier(0.165, 0.84, 0.44, 1);
   -webkit-transition-delay: .8s;
           transition-delay: .8s;
 }
@@ -477,6 +481,7 @@ button {
   right: 0;
   bottom: 0;
   top: 0;
+  z-index: 999;
 }
 
 .second-screen__popup {

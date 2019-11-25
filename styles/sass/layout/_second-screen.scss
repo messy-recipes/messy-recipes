@@ -9,6 +9,7 @@
     list-style: none;
     position: relative;
 
+    // Blocks all of the recipe name buttons from being selected
     &::before {
       content: "";
       display: block;
@@ -18,6 +19,7 @@
       right: 0;
       bottom: 0;
       top: 0;
+      z-index: 999; 
     }
   }
 
@@ -28,7 +30,6 @@
     width: 500px;
     transform: translateY(calc(-50% - 50vh));
     animation: moveup .2s;
-    // ... added these
     background-image:
     radial-gradient(
       circle at top right,
