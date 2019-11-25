@@ -263,6 +263,47 @@ p {
   margin: .8em 0;
 }
 
+.second-screen__popup h2, .second-screen__popup p {
+  text-shadow: 0px 0px 4px black;
+}
+
+a {
+  text-decoration: none;
+  color: #381A33;
+  font-size: 2rem;
+}
+
+a:hover {
+  text-shadow: 1px 1px 1px #823F80, 5px 3px 0px #F4DDFC, 8px 7px 0px #DEA6EE;
+}
+
+.recipe-external-link {
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+}
+
+.recipe-external-link:hover {
+  text-shadow: none;
+}
+
+.recipe-external-link::before {
+  content: '';
+  position: absolute;
+  background: linear-gradient(45deg, #DEA6EE, #DEA6EE);
+  height: 50%;
+  width: 100%;
+  left: -100%;
+  bottom: 0;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+  z-index: -1;
+}
+
+.recipe-external-link:hover::before {
+  left: 0;
+}
+
 .image-container {
   overflow: hidden;
   position: relative;
