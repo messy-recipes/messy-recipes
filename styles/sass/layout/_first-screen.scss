@@ -1,0 +1,39 @@
+.first-screen {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+
+  &__p {
+    margin: 0;
+    position: relative;
+    top: 0;
+  }
+
+  & > * {
+    transform: translateY(0);   
+    transition: .4s transform ease-out;
+  }
+  
+  & > *::after {
+    content: "";
+    display:block;
+    position: absolute;
+    background-color: #FFF;
+    top: 0;
+    left: 0;
+    height: 0;
+    width: 100%;
+    transition: .4s height ease-out;
+  }
+
+  &.complete {
+    &> * {
+      transform: translateY(-50px); 
+    }
+
+    &> *::after {
+      height: 100%;
+    }
+  }
+}

@@ -12,16 +12,16 @@
 
 <body>
 	<main class="wrapper">
-		<section class="first-screen screens" id="firstScreen">
+		<section class="first-screen screens screens--card" id="firstScreen">
 			<h1 class="first-screen__h1">Messy Recipes</h1>
 			<p class="first-screen__p">Hi, welcome to the Messy Recipes Game! Through this game you will have to match the recipe picture with the correct recipe name!</p>
 			<p class="first-screen__p">You will learn a lot about the recipe at the end page and also have links to take you if you want to make it yourself!</p>
 			<p class="first-screen__p">If you select the wrong recipe name we will give you a hint of where the dish comes from.</p>
-			<button id="startButton" class="button--start">Get Started!</button>
+			<button id="startButton" class="button--start">Get Started</button>
 		</section>
 		<!-- first page of the game -->
 
-		<section class="second-screen flex--center screens" id="secondScreen">
+		<section class="second-screen flex--center screens inactive" id="secondScreen">
 			
 			<div class="image-container second-screen__image-container winningRecipeImage">
 				<!-- image goes in here through js -->
@@ -33,8 +33,8 @@
 		</section>
 		<!-- second page of the game -->
 
-		<section class="end-screen screens" id="endScreen">
-			<div class="end-screen__left">
+		<section class="end-screen screens screens--card flex inactive" id="endScreen">
+			<div class="flex__column">
 				<div class="image-container winningRecipeImage">
 					<!-- where we put the image for the end screen -->
 				</div>
@@ -45,7 +45,7 @@
 					</p>
 				</div>
 			</div>
-			<div class="end-screen__right">
+			<div class="flex__column">
 				<ul id="externalLinks">
 					<!-- ...added externalLinks -->
 					<!-- recipe link / youtube link -->

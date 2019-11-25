@@ -5,5 +5,5 @@
 
 @keyframes removal {
   0% { transform: translateY(calc(-50% - 50vh)) }
-  100% { transform: translateY(0); }
+  100% { transform: translate(calc(-100% - 50vh), calc(-50% - 50vh)); }
 }
