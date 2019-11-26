@@ -1,9 +1,13 @@
 .second-screen {
   &__image-container {
     height: 450px;
-    width: 450px;
+    width: 450px; 
+    position: relative;
+    img {
+      top: 50%;
+      transform: translateY(-50%);
+    }
   }
-  
   &__list {
     margin-left: 4%;
     background-color: #FFF;

@@ -223,8 +223,11 @@ legend, button::-moz-focus-inner, input::-moz-focus-inner {
   overflow: hidden;
 }
 
+html {
+  font-size: 100%;
+}
+
 body {
-  font-size: 62.5%;
   background: url(../images/restaurant.png);
 }
 
@@ -501,6 +504,13 @@ button {
 .second-screen__image-container {
   height: 450px;
   width: 450px;
+  position: relative;
+}
+
+.second-screen__image-container img {
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
 }
 
 .second-screen__list {

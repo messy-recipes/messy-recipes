@@ -1,0 +1,14 @@
+.end-screen {
+  .image-container {
+    position: relative;
+    .winning-image {
+      width: 100%;
+      position: absolute;
+      top: 50%;
+      right: auto;
+      left: auto;
+      bottom: auto; 
+      transform: translateY(-50%);
+    }
+  }
+}

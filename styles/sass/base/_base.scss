@@ -6,8 +6,22 @@ article,aside,details,figcaption,figure,footer,header,hgroup,nav,section,summary
 
 .visually-hidden:not(:focus):not(:active) { position: absolute; width: 1px; height: 1px; margin: -1px;border: 0;padding: 0;white-space: nowrap;clip-path: inset(100%);clip: rect(00 0 0);overflow: hidden;}
 
+html {
+  font-size: 100%; // 1rem = 16px
+  @include respond(lg) {
+    font-size: 87.5%; // 1rem = 14px
+  }
+  
+  @include respond(me) {
+    font-size: 75%; // 1rem = 12px
+  }
+  
+  @include respond(sm) {
+    font-size: 62.5%; // 1rem = 10px;
+  }
+}
+
 body {
-  font-size: 62.5%;
   background: url(../images/restaurant.png);
   &::before {
     content: "";
