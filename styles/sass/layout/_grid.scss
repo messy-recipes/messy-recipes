@@ -15,13 +15,27 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  @include respond(md) {
+    flex-direction: column;
+    align-items: stretch;
+  }
   &--center {
     @extend .flex;
     justify-content: center;
+
+    @include respond(md) {
+      align-items: stretch;
+    }
   }
   &__column {
     flex: 1 1 50%;
     min-height: 50vh;
+
+    @include respond(md) {
+      flex: 0 0 auto;
+      min-height: 100px;
+    }
+
     &--right {
       display: flex;
       flex-direction: column;
@@ -29,4 +43,5 @@ body {
       margin: 0 5%;
     }
   }
+
 }

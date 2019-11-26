@@ -88,42 +88,47 @@ app.recipeNameCheck = function() {
   const winningRecipe = app.currentRecipes[0].strMeal;
   const origin = app.currentRecipes[0].strArea;
 
+  
+  $recipeButtons = $('.button--recipe');
+  $recipeButtons.attr('disabled', true);
+  
   // Disable the other recipe name buttons
   app.$randomList.addClass('active');
-
+  
   // Create popup elements for each scenario
   const winningElement = `
-    <div class="second-screen__popup">
-      <h2>Correct!</h2>
-      <p>The recipe is ${winningRecipe}</p>
-      <button class="button button--winner" id="winnerButton" disabled>Continue</button>
-    </div>
+  <div class="second-screen__popup">
+  <h2>Correct!</h2>
+  <p>The recipe is ${winningRecipe}</p>
+  <button class="button button--winner" id="winnerButton" disabled>Continue</button>
+  </div>
   `;
   
   const wrongElement = `
-    <div class="second-screen__popup">
-      <h2>Incorrect!</h2>
-      <p>Hint: It is a ${origin} dish.</p>
-      <button class="button button--loser" id="loserButton" disabled>Try again</button>
-    </div>
+  <div class="second-screen__popup">
+  <h2>Incorrect!</h2>
+  <p>Hint: It is a ${origin} dish.</p>
+  <button class="button button--loser" id="loserButton" disabled>Try again</button>
+  </div>
   `;
-
+  
   // Check the recipe name that was clicked against the winning recipe name
   if (recipeClicked === winningRecipe) {
+    
     // Show the winning popup element
     app.$secondScreen.after($(winningElement));
-
+    $winnerButton = $('#winnerButton');
+    
     // Enable the [CONTINUE] button
-    $('#winnerButton').attr('disabled', false);
-
-    $('#winnerButton').on('click', function() {
+    $winnerButton.attr('disabled', false);
+    
+    $winnerButton.on('click', function() {
       $('.second-screen__popup').addClass('remove');
       app.$secondScreen.addClass('inactive');
       app.$endScreen.removeClass('inactive');
       app.$randomList.removeClass('active');
-      app.addLinks();
-      // app.$secondScreen.addClass('screen-two-move-up');
-
+      app.addWinningRecipeInfo();
+      
       // Disable the winner button, and enable the next screen's focusable elements
       $(this).attr('disabled', true);
       $('.endScreenLinks').attr('tabIndex', 1);
@@ -132,13 +137,16 @@ app.recipeNameCheck = function() {
   } else {
     // Show the wrong popup
     app.$secondScreen.after($(wrongElement));
-
+    $loserButton = $('#loserButton');
+    
     // Enable the loser button to be clicked
-    $('#loserButton').attr('disabled', false);
-
-    $('#loserButton').on('click', function () {
+    $loserButton.attr('disabled', false);
+    
+    $loserButton.on('click', function () {
       app.$randomList.removeClass('active');
       $('.second-screen__popup').slideUp(1000);
+      
+      $recipeButtons.attr('disabled', false);
 
       // Disable this button, and allow the recipe names to be clicked
       $(this).attr('disabled', true);
@@ -149,14 +157,16 @@ app.recipeNameCheck = function() {
 
 // Function Add Links
 // Added list items that are external links to youtube 
-app.addLinks = () => {
+app.addWinningRecipeInfo = () => {
   const youtube = app.currentRecipes[0].strYoutube;
   const source = app.currentRecipes[0].strSource;
+  const title = app.currentRecipes[0].strMeal;
   const linkElements = `
     <li><a href="${youtube}" class="endScreenLinks recipe-external-link" tabIndex="-1">YouTube Link</a></li>
     <li><a href="${source}" class="endScreenLinks recipe-external-link" tabIndex="-1">Recipe Link</a></li>
   `;
   $('#externalLinks').html(linkElements);
+  $('#winningTitle').text(title);
 }
 
 // Function: Init

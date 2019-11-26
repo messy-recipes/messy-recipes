@@ -3,6 +3,12 @@
     height: 450px;
     width: 450px; 
     position: relative;
+
+    @include respond(md) {
+      width: 250px;
+      align-self: center;
+    }
+
     img {
       top: 50%;
       transform: translateY(-50%);
@@ -17,6 +23,11 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+
+    @include respond(md) {
+      height: 500px;
+      margin-left: 0;
+    }
 
     // Blocks all of the recipe name buttons from being selected
     &::before {

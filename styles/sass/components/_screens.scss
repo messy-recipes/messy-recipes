@@ -12,6 +12,10 @@
   transition: .4s all cubic-bezier(0.165, 0.84, 0.44, 1);
   transition-delay: .8s;
 
+  @include respond(md) {
+    max-height: 80vh;
+  }
+
   &.inactive {
     transform: translate(-50%, 100vh);
   }

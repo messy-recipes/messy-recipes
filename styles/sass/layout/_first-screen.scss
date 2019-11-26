@@ -4,6 +4,19 @@
   justify-content: space-between;
   align-items: flex-start;
 
+  @include respond(md) {
+    justify-content: flex-start;
+    height: auto;
+
+    h1 {
+      margin-bottom: 1.5rem;
+    }
+
+    p {
+      margin-bottom: 2rem;
+    }
+  }
+
   &__p {
     margin: 0;
     position: relative;

@@ -1,6 +1,19 @@
 .end-screen {
+  @include respond(md) {
+    justify-content: flex-start;
+  }
+  &__title {
+    font-size: 2.8rem;
+    margin: 0;
+  }
+
   .image-container {
     position: relative;
+
+    @include respond(md) {
+      max-height: 300px;
+      width: auto;
+    }
     .winning-image {
       width: 100%;
       position: absolute;

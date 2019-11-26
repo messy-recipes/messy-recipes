@@ -8,11 +8,9 @@ article,aside,details,figcaption,figure,footer,header,hgroup,nav,section,summary
 
 html {
   font-size: 100%; // 1rem = 16px
-  @include respond(lg) {
-    font-size: 87.5%; // 1rem = 14px
-  }
   
-  @include respond(me) {
+  
+  @include respond(md) {
     font-size: 75%; // 1rem = 12px
   }
   

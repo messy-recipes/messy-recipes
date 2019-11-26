@@ -227,6 +227,18 @@ html {
   font-size: 100%;
 }
 
+@media (max-width: 850px) {
+  html {
+    font-size: 75%;
+  }
+}
+
+@media (max-width: 420px) {
+  html {
+    font-size: 62.5%;
+  }
+}
+
 body {
   background: url(../images/restaurant.png);
 }
@@ -352,6 +364,7 @@ button {
 }
 
 .button--start, .button--play-again, .button--winner, .button--loser, .button--recipe {
+  font-size: 2.4rem;
   border-style: none;
   border-radius: 4px;
   position: relative;
@@ -432,6 +445,12 @@ button {
           transition-delay: .8s;
 }
 
+@media (max-width: 850px) {
+  .screens {
+    max-height: 80vh;
+  }
+}
+
 .screens.inactive {
   -webkit-transform: translate(-50%, 100vh);
           transform: translate(-50%, 100vh);
@@ -464,6 +483,21 @@ button {
   -webkit-box-align: start;
       -ms-flex-align: start;
           align-items: flex-start;
+}
+
+@media (max-width: 850px) {
+  .first-screen {
+    -webkit-box-pack: start;
+        -ms-flex-pack: start;
+            justify-content: flex-start;
+    height: auto;
+  }
+  .first-screen h1 {
+    margin-bottom: 1.5rem;
+  }
+  .first-screen p {
+    margin-bottom: 2rem;
+  }
 }
 
 .first-screen__p {
@@ -507,6 +541,15 @@ button {
   position: relative;
 }
 
+@media (max-width: 850px) {
+  .second-screen__image-container {
+    width: 250px;
+    -ms-flex-item-align: center;
+        -ms-grid-row-align: center;
+        align-self: center;
+  }
+}
+
 .second-screen__image-container img {
   top: 50%;
   -webkit-transform: translateY(-50%);
@@ -529,6 +572,13 @@ button {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
+}
+
+@media (max-width: 850px) {
+  .second-screen__list {
+    height: 500px;
+    margin-left: 0;
+  }
 }
 
 .second-screen__list::before {
@@ -599,10 +649,30 @@ body {
           align-items: center;
 }
 
+@media (max-width: 850px) {
+  .flex, .flex--center {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-align: stretch;
+        -ms-flex-align: stretch;
+            align-items: stretch;
+  }
+}
+
 .flex--center {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+}
+
+@media (max-width: 850px) {
+  .flex--center {
+    -webkit-box-align: stretch;
+        -ms-flex-align: stretch;
+            align-items: stretch;
+  }
 }
 
 .flex__column {
@@ -610,6 +680,15 @@ body {
       -ms-flex: 1 1 50%;
           flex: 1 1 50%;
   min-height: 50vh;
+}
+
+@media (max-width: 850px) {
+  .flex__column {
+    -webkit-box-flex: 0;
+        -ms-flex: 0 0 auto;
+            flex: 0 0 auto;
+    min-height: 100px;
+  }
 }
 
 .flex__column--right {
@@ -624,4 +703,39 @@ body {
       -ms-flex-pack: justify;
           justify-content: space-between;
   margin: 0 5%;
+}
+
+@media (max-width: 850px) {
+  .end-screen {
+    -webkit-box-pack: start;
+        -ms-flex-pack: start;
+            justify-content: flex-start;
+  }
+}
+
+.end-screen__title {
+  font-size: 2.8rem;
+  margin: 0;
+}
+
+.end-screen .image-container {
+  position: relative;
+}
+
+@media (max-width: 850px) {
+  .end-screen .image-container {
+    max-height: 300px;
+    width: auto;
+  }
+}
+
+.end-screen .image-container .winning-image {
+  width: 100%;
+  position: absolute;
+  top: 50%;
+  right: auto;
+  left: auto;
+  bottom: auto;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
 }
