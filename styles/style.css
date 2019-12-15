@@ -280,8 +280,14 @@ p {
   margin: .8em 0;
 }
 
+.second-screen__popup h2 {
+  font-family: "Arimo", sans-serif;
+  font-size: 2.4rem;
+}
+
 .second-screen__popup h2, .second-screen__popup p {
   text-shadow: 0px 0px 4px black;
+  margin: 0 0 2rem 0;
 }
 
 a {
@@ -364,6 +370,7 @@ button {
 }
 
 .button--start, .button--play-again, .button--winner, .button--loser, .button--recipe {
+  text-align: left;
   font-size: 2.4rem;
   border-style: none;
   border-radius: 4px;
@@ -413,6 +420,7 @@ button {
 
 .button--recipe {
   background: #007B53;
+  padding: .5% 10px;
 }
 
 .button--start, .button--play-again, .button--recipe {
@@ -424,8 +432,9 @@ button {
 }
 
 .button--play-again {
-  display: inline-block;
-  max-width: 33vh;
+  display: block;
+  text-align: center;
+  padding: 1% 20px;
 }
 
 .screens {
@@ -509,8 +518,10 @@ button {
 .first-screen > * {
   -webkit-transform: translateY(0);
           transform: translateY(0);
-  -webkit-transition: .4s transform ease-out;
-  transition: .4s transform ease-out;
+  -webkit-transition: 0.9s -webkit-transform cubic-bezier(0.645, 0.045, 0.355, 1);
+  transition: 0.9s -webkit-transform cubic-bezier(0.645, 0.045, 0.355, 1);
+  transition: 0.9s transform cubic-bezier(0.645, 0.045, 0.355, 1);
+  transition: 0.9s transform cubic-bezier(0.645, 0.045, 0.355, 1), 0.9s -webkit-transform cubic-bezier(0.645, 0.045, 0.355, 1);
 }
 
 .first-screen > *::after {
@@ -522,8 +533,8 @@ button {
   left: 0;
   height: 0;
   width: 100%;
-  -webkit-transition: .4s height ease-out;
-  transition: .4s height ease-out;
+  -webkit-transition: 0.6s height cubic-bezier(0.645, 0.045, 0.355, 1);
+  transition: 0.6s height cubic-bezier(0.645, 0.045, 0.355, 1);
 }
 
 .first-screen.complete > * {
@@ -533,6 +544,16 @@ button {
 
 .first-screen.complete > *::after {
   height: 100%;
+}
+
+.first-screen.complete .button--start {
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+.first-screen.complete .button--start:hover {
+  -webkit-box-shadow: none;
+          box-shadow: none;
 }
 
 .second-screen__image-container {

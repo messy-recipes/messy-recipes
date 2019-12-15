@@ -20,8 +20,14 @@ p {
 }
 // ... added second screen pop up typography
 .second-screen__popup {
+  h2 {
+    font-family: "Arimo", sans-serif;
+    font-size: 2.4rem;
+  }
+
   h2, p {
     text-shadow: 0px 0px 4px black;
+    margin: 0 0 2rem 0;
   }
 }
 // Anchor styling
